@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class TankWarrior : MonoBehaviour
 {
-	//CODIGO DESCOMENTADO é a maneira simples de fazer o personagem de mover. Mas na maneira mais correta (comentada) nao ta funfando KKKK
+	/// <summary>
+	/// CODIGO DESCOMENTADO é a maneira simples de fazer o personagem de mover.Mas na maneira mais correta (comentada) nao ta funfando KKKK
+	/// </summary>
 
-	//public float walkSpeed = 5.0f;
-	//public float rotationSpeed = 15.5f;
-	//public float gravity = 20;
-	//public Vector3 walking = Vector3.zero;
+	public float walkSpeed = 5.0f;
+	public float rotationSpeed = 50;
+	public float gravity = 20;
+	public Vector3 walking = Vector3.zero;
 	public CharacterController characterController = null;
+	public Animator animator = null;
 
-	// Update is called once per frame
+	//Update is called once per frame
 	//void Update()
 	//{
 
@@ -34,13 +37,26 @@ public class TankWarrior : MonoBehaviour
 
 	//	transform.Rotate(0, rotation, 0);
 
+	//	if (characterController.isGrounded)
+	//	{
+	//		if(walking.z != 0)
+	//		{
+	//			animator.SetBool("parado", false);
+	//			animator.SetBool("andando", true);
+	//		}
+	//		else
+	//		{
+	//			animator.SetBool("parado", true);
+	//			animator.SetBool("andando", false);
+	//		}
+	//	}
 
 
 	//}
 
 
 	public float moveSpeed = 5.0f;
-	public float rotationSpeed = 50;
+	
 
 	void Update() // Funciona kkk
 	{
@@ -54,12 +70,24 @@ public class TankWarrior : MonoBehaviour
 		move *= Time.deltaTime;
 		rotation *= Time.deltaTime;
 
-	    //characterController.Move(walking * Time.deltaTime);
+		
 
 		//Rotate Char
 
 		transform.Rotate(0, rotation, 0);
 		transform.Translate(0, 0, move);
+
+		//Animação
+		if (Input.GetKey(KeyCode.W)) //gambi kk
+		{
+			animator.SetBool("parado", false);
+			animator.SetBool("andando", true);
+		}
+		else
+		{
+			animator.SetBool("parado", true);
+			animator.SetBool("andando", false);
+		}
 
 
 
