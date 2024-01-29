@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TankWarrior : MonoBehaviour
 {
-
+	//CODIGO DESCOMENTADO é a maneira simples de fazer o personagem de mover. Mas na maneira mais correta (comentada) nao ta funfando KKKK
 
 	//public float walkSpeed = 5.0f;
 	//public float rotationSpeed = 15.5f;
