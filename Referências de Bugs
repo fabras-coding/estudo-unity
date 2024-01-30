@@ -1,0 +1,14 @@
+#Referências para correções de bugs
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=
+Problemas no isGrounded: 
+-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+https://forum.unity.com/threads/charactercontroller-isgrounded-not-working.929859/
+https://www.reddit.com/r/Unity3D/comments/kcwmmd/charactercontrollerisgrounded_what_is_ground/
+https://discussions.unity.com/t/character-controller-isgrounded-value-flickers-on-and-off/228132
+https://gamedev.stackexchange.com/questions/188371/isgrounded-is-not-working-reliably
+https://www.reddit.com/r/Unity3D/comments/6qm8os/how_do_i_use_isgrounded_reliably/
+https://copyprogramming.com/howto/isgrounded-is-not-working-reliably
+https://stackoverflow.com/questions/39732254/isgrounded-in-charactercontroller-not-stable
+https://stackoverflow.com/questions/25461105/unity3d-charactercontroller-doesnt-stay-grounded-impossible-to-continuously-p
