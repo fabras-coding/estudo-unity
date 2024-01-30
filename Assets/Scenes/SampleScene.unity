@@ -863,14 +863,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232900385}
-  m_LocalRotation: {x: -0, y: 0.4314555, z: -0, w: 0.90213424}
-  m_LocalPosition: {x: -17.05, y: 31.21, z: -35.4}
+  m_LocalRotation: {x: -0.051012814, y: 0.59478813, z: -0.056083895, w: 0.8002996}
+  m_LocalPosition: {x: -18.26, y: 31.21, z: -39.02}
   m_LocalScale: {x: 7.6556683, y: 3.7501912, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
-  m_LocalEulerAnglesHint: {x: 0, y: 51.12, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.856, y: 73.305, z: -8.654}
 --- !u!1 &238955407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,7 +2317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5a15a7f61587764439029d740bf6268b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.87
+      value: 24.11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5a15a7f61587764439029d740bf6268b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2355,6 +2355,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d8fa0e1336c4d3c479d7c6335e324a1b, type: 2}
+    - target: {fileID: -1125371184984017705, guid: 5a15a7f61587764439029d740bf6268b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0464
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5a15a7f61587764439029d740bf6268b, type: 3}
       propertyPath: m_Name
       value: buffalo_3d
@@ -3107,12 +3111,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 416225f47cd20204098c1e2eeab986f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpSpeed: 3
   walkSpeed: 1.5
   rotationSpeed: 60
   gravity: 20
   walking: {x: 0, y: 0, z: 0}
+  jumping: {x: 0, y: 0, z: 0}
   control: {fileID: 1992015484}
   animator: {fileID: 1992015479}
+  isJumping: 0
 --- !u!64 &1992015483
 MeshCollider:
   m_ObjectHideFlags: 0

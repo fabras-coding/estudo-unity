@@ -5,24 +5,31 @@ using UnityEngine;
 
 public class TankWarrior : MonoBehaviour
 {
-	/// <summary>
-	/// CODIGO DESCOMENTADO é a maneira simples de fazer o personagem de mover.Mas na maneira mais correta (comentada) nao ta funfando KKKK
-	/// </summary>
 
-	public float walkSpeed = 5.0f;
-	public float rotationSpeed = 50;
+	public float runSpeed = 6.5f;
+	public float jumpSpeed = 50.0f;
+	public float walkSpeed = 1.5f;
+	public float rotationSpeed = 60.0f;
 	public float gravity = 20;
+
 	public Vector3 walking = Vector3.zero;
+	public Vector3 running = Vector3.zero;
+	public Vector3 jumping = Vector3.zero;
+
 	public CharacterController control = null;
 	public Animator animator = null;
+
+	public bool isJumping = false;
+	public bool isRunning = false;
 
 	//Update is called once per frame
 	void Update()
 	{
+		print("is running = " + isRunning);
+
+		isRunning = false;	
 
 		//Moving foward
-
-		
 		if (control.isGrounded) 
 		{
 			print("is grounded do GET AXIS   " + DateTime.Now);
@@ -39,6 +46,7 @@ public class TankWarrior : MonoBehaviour
 		float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
 		rotation *= Time.deltaTime;
 		transform.Rotate(0, rotation, 0);
+
 
 
 		//Animation 
@@ -66,50 +74,37 @@ public class TankWarrior : MonoBehaviour
 		}
 
 
+		////Jump
+		//if(control.isGrounded && Input.GetAxis("Jump") != 0)
+		//{
+		//	isJumping = true;
+		//	print("JUMP is " + Input.GetAxis("Jump"));
+		//	jumping = new Vector3(0, Input.GetAxis("Jump"), 0);
+		//	jumping = transform.TransformDirection(jumping);
+		//	jumping *= jumpSpeed;
 
+		//	control.Move(jumping * Time.deltaTime);
+		//	isJumping = false;
 		//}
 
 
-		//public float moveSpeed = 5.0f;
+		//Run
+		if (control.isGrounded && Input.GetKey(KeyCode.LeftShift))
+		{
+			isRunning = true;
 
-
-		//void Update() // Funciona kkk
-		//{
-
-		//	//Moving foward
-
-
-		//	float move = Input.GetAxis("Vertical") * moveSpeed;
-		//	float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
-
-		//	move *= Time.deltaTime;
-		//	rotation *= Time.deltaTime;
-
-
-
-		//	//Rotate Char
-
-		//	transform.Rotate(0, rotation, 0);
-		//	transform.Translate(0, 0, move);
-
-		//	//Animação
-		//	if (Input.GetKey(KeyCode.W)) //gambi kk
-		//	{
-		//		animator.SetBool("parado", false);
-		//		animator.SetBool("andando", true);
-		//	}
-		//	else
-		//	{
-		//		animator.SetBool("parado", true);
-		//		animator.SetBool("andando", false);
-		//	}
-
+			print("is grounded do RUUUUUNNIIING - CORRE NEGADA   " + DateTime.Now);
+			running = new Vector3(0, 0, Input.GetAxis("Vertical"));
+			running = transform.TransformDirection(running); // Transform Direction transforma as coordenadas x,y e z em coordenadas em relação ao mundo
+			running *= runSpeed;
+			control.Move(running * Time.deltaTime);
+		}
 
 
 	}
 
 
-		private void LateUpdate()
+	private void LateUpdate()
 		{
 			// colocar a camera aqui com position = posicao da camera em relação ao player
 		}
