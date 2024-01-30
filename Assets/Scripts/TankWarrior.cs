@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class TankWarrior : MonoBehaviour
 	public float rotationSpeed = 50;
 	public float gravity = 20;
 	public Vector3 walking = Vector3.zero;
-	public CharacterController characterController = null;
+	public CharacterController control = null;
 	public Animator animator = null;
 
 	//Update is called once per frame
@@ -21,37 +22,45 @@ public class TankWarrior : MonoBehaviour
 
 		//Moving foward
 
-		//walking.y -= gravity * Time.deltaTime;
-		//if (characterController.isGrounded) // nao funciona, ver o pq.
+		
+		if (control.isGrounded) 
+		{
+			print("is grounded do GET AXIS   " + DateTime.Now);
+			walking = new Vector3(0, 0, Input.GetAxis("Vertical"));
+			walking = transform.TransformDirection(walking); // Transform Direction transforma as coordenadas x,y e z em coordenadas em relação ao mundo
+			walking *= walkSpeed;
+		}
 
-		print("Toquei o chao");
-		walking = new Vector3(0, 0, Input.GetAxis("Vertical"));
-		walking = transform.TransformDirection(walking); // Transform Direction movimenta o personagem em relação ao mundo
-		walking *= walkSpeed;
-
-
-		print("eixo Y agora: " + walking.y);
-		characterController.Move(walking * Time.deltaTime);
+		walking.y -= gravity * Time.deltaTime;
+		control.Move(walking * Time.deltaTime);
+		
 
 		//Rotate Char
-
 		float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
 		rotation *= Time.deltaTime;
-		print("rotation: " + rotation);
 		transform.Rotate(0, rotation, 0);
 
 
 		//Animation 
-		//if (characterController.isGrounded)// n funciona
-
-		if (walking.z != 0)
+		if (control.isGrounded && Input.GetAxis("Vertical")!= 0)//está no chão e andando
 		{
-			print("Valor do walking Z: " + walking.z);
+			print("is grounded AND WALKING! ••• " + DateTime.Now + "Walking to: " + Input.GetAxis("Vertical"));
+
 			animator.SetBool("parado", false);
 			animator.SetBool("andando", true);
+		
 		}
-		else
+		else if (control.isGrounded && Input.GetAxis("Vertical") == 0) //está no chão e parado
 		{
+			print("is grounded AND IDLE!  ••••••••••• " + DateTime.Now + "IDLE because Input is: " + Input.GetAxis("Vertical"));
+
+			animator.SetBool("parado", true);
+			animator.SetBool("andando", false);
+		}
+		else if (!control.isGrounded)  // está no Ar
+		{
+			print("is NOT GROUNDED! •••••••••••••••••••••••••••••••• " + DateTime.Now);
+			
 			animator.SetBool("parado", true);
 			animator.SetBool("andando", false);
 		}
@@ -97,7 +106,7 @@ public class TankWarrior : MonoBehaviour
 
 
 
-		}
+	}
 
 
 		private void LateUpdate()
