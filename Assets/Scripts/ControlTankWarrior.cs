@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankWarrior : MonoBehaviour
+public class ControlTankWarrior : MonoBehaviour
 {
 
 	public float runSpeed = 6.5f;
@@ -25,22 +25,21 @@ public class TankWarrior : MonoBehaviour
 	//Update is called once per frame
 	void Update()
 	{
-		print("is running = " + isRunning);
 
 		isRunning = false;
 		animator.speed = 1;
 
 		//Moving foward
-		if (control.isGrounded) 
+		if (control.isGrounded)
 		{
-			print("is grounded do GET AXIS   " + DateTime.Now);
+			//print("is grounded do GET AXIS   " + DateTime.Now);
 			walking = new Vector3(0, 0, Input.GetAxis("Vertical"));
 			walking = transform.TransformDirection(walking); // Transform Direction transforma as coordenadas x,y e z em coordenadas em relação ao mundo
 			walking *= walkSpeed;
 		}
 
-        if (!isJumping)
-        {
+		if (!isJumping)
+		{
 			walking.y -= gravity * Time.deltaTime;
 			control.Move(walking * Time.deltaTime);
 
@@ -55,9 +54,9 @@ public class TankWarrior : MonoBehaviour
 
 
 		//Animation 
-		if (control.isGrounded && Input.GetAxis("Vertical")!= 0)//está no chão e andando
+		if (control.isGrounded && Input.GetAxis("Vertical") != 0)//está no chão e andando
 		{
-			print("is grounded AND WALKING! ••• " + DateTime.Now + "Walking to: " + Input.GetAxis("Vertical"));
+			//print("is grounded AND WALKING! ••• " + DateTime.Now + "Walking to: " + Input.GetAxis("Vertical"));
 
 			animator.SetBool("parado", false);
 			animator.SetBool("andando", true);
@@ -67,7 +66,7 @@ public class TankWarrior : MonoBehaviour
 		}
 		else if (control.isGrounded && Input.GetAxis("Vertical") == 0) //está no chão e parado
 		{
-			print("is grounded AND IDLE!  ••••••••••• " + DateTime.Now + "IDLE because Input is: " + Input.GetAxis("Vertical"));
+			//print("is grounded AND IDLE!  ••••••••••• " + DateTime.Now + "IDLE because Input is: " + Input.GetAxis("Vertical"));
 
 			animator.SetBool("parado", true);
 			animator.SetBool("andando", false);
@@ -76,8 +75,8 @@ public class TankWarrior : MonoBehaviour
 		}
 		else if (!control.isGrounded)  // está no Ar
 		{
-			print("is NOT GROUNDED! •••••••••••••••••••••••••••••••• " + DateTime.Now);
-			
+			//print("is NOT GROUNDED! •••••••••••••••••••••••••••••••• " + DateTime.Now);
+
 			animator.SetBool("parado", true);
 			animator.SetBool("andando", false);
 			animator.SetBool("pulando", false);
@@ -88,7 +87,7 @@ public class TankWarrior : MonoBehaviour
 		{
 			isRunning = true;
 
-			print("is grounded do RUUUUUNNIIING - CORRE NEGADA   " + DateTime.Now);
+			//print("is grounded do RUUUUUNNIIING - CORRE NEGADA   " + DateTime.Now);
 			running = new Vector3(0, 0, Input.GetAxis("Vertical"));
 			running = transform.TransformDirection(running); // Transform Direction transforma as coordenadas x,y e z em coordenadas em relação ao mundo
 			running *= runSpeed;
@@ -123,13 +122,7 @@ public class TankWarrior : MonoBehaviour
 
 
 
-
-
 	}
 
 
-	private void LateUpdate()
-		{
-			// colocar a camera aqui com position = posicao da camera em relação ao player
-		}
-	}
+}
