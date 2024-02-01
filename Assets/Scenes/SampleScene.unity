@@ -3111,15 +3111,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 416225f47cd20204098c1e2eeab986f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runSpeed: 3
   jumpSpeed: 3
   walkSpeed: 1.5
   rotationSpeed: 60
   gravity: 20
   walking: {x: 0, y: 0, z: 0}
+  running: {x: 0, y: 0, z: 0}
   jumping: {x: 0, y: 0, z: 0}
   control: {fileID: 1992015484}
   animator: {fileID: 1992015479}
   isJumping: 0
+  isRunning: 0
 --- !u!64 &1992015483
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3139,7 +3142,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8545447256379345787, guid: 5a15a7f61587764439029d740bf6268b, type: 3}
 --- !u!143 &1992015484

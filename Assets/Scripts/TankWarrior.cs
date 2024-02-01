@@ -27,7 +27,8 @@ public class TankWarrior : MonoBehaviour
 	{
 		print("is running = " + isRunning);
 
-		isRunning = false;	
+		isRunning = false;
+		animator.speed = 1;
 
 		//Moving foward
 		if (control.isGrounded) 
@@ -38,9 +39,13 @@ public class TankWarrior : MonoBehaviour
 			walking *= walkSpeed;
 		}
 
-		walking.y -= gravity * Time.deltaTime;
-		control.Move(walking * Time.deltaTime);
-		
+        if (!isJumping)
+        {
+			walking.y -= gravity * Time.deltaTime;
+			control.Move(walking * Time.deltaTime);
+
+		}
+
 
 		//Rotate Char
 		float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
@@ -56,7 +61,9 @@ public class TankWarrior : MonoBehaviour
 
 			animator.SetBool("parado", false);
 			animator.SetBool("andando", true);
-		
+			animator.SetBool("pulando", false);
+
+
 		}
 		else if (control.isGrounded && Input.GetAxis("Vertical") == 0) //está no chão e parado
 		{
@@ -64,6 +71,8 @@ public class TankWarrior : MonoBehaviour
 
 			animator.SetBool("parado", true);
 			animator.SetBool("andando", false);
+			animator.SetBool("pulando", false);
+
 		}
 		else if (!control.isGrounded)  // está no Ar
 		{
@@ -71,22 +80,8 @@ public class TankWarrior : MonoBehaviour
 			
 			animator.SetBool("parado", true);
 			animator.SetBool("andando", false);
+			animator.SetBool("pulando", false);
 		}
-
-
-		////Jump
-		//if(control.isGrounded && Input.GetAxis("Jump") != 0)
-		//{
-		//	isJumping = true;
-		//	print("JUMP is " + Input.GetAxis("Jump"));
-		//	jumping = new Vector3(0, Input.GetAxis("Jump"), 0);
-		//	jumping = transform.TransformDirection(jumping);
-		//	jumping *= jumpSpeed;
-
-		//	control.Move(jumping * Time.deltaTime);
-		//	isJumping = false;
-		//}
-
 
 		//Run
 		if (control.isGrounded && Input.GetKey(KeyCode.LeftShift))
@@ -98,7 +93,36 @@ public class TankWarrior : MonoBehaviour
 			running = transform.TransformDirection(running); // Transform Direction transforma as coordenadas x,y e z em coordenadas em relação ao mundo
 			running *= runSpeed;
 			control.Move(running * Time.deltaTime);
+			animator.speed = 2;
 		}
+
+
+		////Jump - ta bizarro kkk
+		//if (control.isGrounded && Input.GetAxis("Jump") != 0)
+		//{
+		//	int frameJump = 1;
+
+		//	isJumping = true;
+		//	print("JUMP is " + Input.GetAxis("Jump"));
+		//	jumping = new Vector3(0, frameJump, 0);
+		//	jumping = transform.TransformDirection(jumping);
+		//	jumping *= jumpSpeed;
+
+		//	animator.SetBool("pulando", true);
+		//	animator.SetBool("parado", false);
+		//	animator.SetBool("andando", false);
+
+		//	while (frameJump< 6000)
+		//	{
+		//		frameJump++;
+		//		control.Move(jumping * Time.deltaTime);
+
+		//	}
+		//	isJumping = false;
+		//}
+
+
+
 
 
 	}
