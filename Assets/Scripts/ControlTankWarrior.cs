@@ -47,6 +47,7 @@ public class ControlTankWarrior : MonoBehaviour
 		{
 
 			isJumping = true;
+			animator.SetBool("pulando", true);
 			
 			if (isRunning)
 				walking.z *= runSpeed;
@@ -149,6 +150,11 @@ public class ControlTankWarrior : MonoBehaviour
 		if (animationState.Equals("Attack"))
 		{
 			animator.SetBool("atacando", false);
+		}
+
+		if (animationState.Equals("Jump"))
+		{
+			animator.SetBool("pulando", false);
 		}
 
 	}
