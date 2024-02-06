@@ -27,7 +27,7 @@ public class ControlTankWarrior : MonoBehaviour
 	void Update()
 	{
 
-		
+
 		animator.speed = 1;
 
 		//Moving foward/back
@@ -40,7 +40,6 @@ public class ControlTankWarrior : MonoBehaviour
 
 				
 		walking.y -= gravity * Time.deltaTime;
-		print("::::::::::::::::FORCA DA GRAVIDADE ATUAL:::::::::::::: " + walking.y);
 		control.Move(walking * Time.deltaTime);
 
 		//Jump 
@@ -48,18 +47,15 @@ public class ControlTankWarrior : MonoBehaviour
 		{
 
 			isJumping = true;
-			print("IS RUNNING PULANDO:::::::: " + isRunning);
+			
 			if (isRunning)
 				walking.z *= runSpeed;
 			
 			walking.y = Mathf.Sqrt(jumpForce * gravity);
 			
-			print("::::::::::::::::FORCA DA GRAVIDADE ATUAL PULANDO:::::::::::::: " + walking.y);
-			
 
 			control.Move(walking * Time.deltaTime);
 		}
-
 
 
 
@@ -75,25 +71,21 @@ public class ControlTankWarrior : MonoBehaviour
 		{
 
 
-
-
-			if (Input.GetAxis("Vertical") != 0)//est� no ch�o e andando
+			if (Input.GetAxis("Vertical") != 0)//esta no chao e andando
 			{
-				print("is grounded AND WALKING! |||||||| " + DateTime.Now + "Walking to: " + Input.GetAxis("Vertical"));
-
+				
 				animator.SetBool("parado", false);
 				animator.SetBool("andando", true);
 
-				if (Input.GetKeyDown(KeyCode.Mouse0))
+				if (Input.GetButtonDown("Fire1") && !isRunning ) //Atacando
 				{
-					print("atacando");
 					animator.SetBool("atacando", true);
 
 				}
 
 
 			}
-			else if (Input.GetAxis("Vertical") == 0) //est� no ch�o e parado
+			else if (Input.GetAxis("Vertical") == 0) //esta no chao e parado
 			{
 				print("is grounded AND IDLE!  |||||||||||||||| " + DateTime.Now + "IDLE because Input is: " + Input.GetAxis("Vertical"));
 
@@ -102,13 +94,12 @@ public class ControlTankWarrior : MonoBehaviour
 				{
 					print("atacando");
 					animator.SetBool("atacando", true);
-					animator.SetBool("parado", false);
-					animator.SetBool("andando", false);
 
 				}
 				else
 				{
 					animator.SetBool("parado", true);
+					animator.SetBool("atacando", false);
 					animator.SetBool("andando", false);
 				}
 
@@ -119,7 +110,7 @@ public class ControlTankWarrior : MonoBehaviour
 
 		}
 
-		if (!control.isGrounded)  // est� no Ar
+		if (!control.isGrounded)  // esta no Ar
 		{
 			print("is NOT GROUNDED! ||||||||||||||||||||||||||||||||||||| " + DateTime.Now);
 
@@ -135,12 +126,12 @@ public class ControlTankWarrior : MonoBehaviour
 		{
 			isRunning = true;
 
-			print("is grounded do RUUUUUNNIIING - CORRE NEGADA   " + DateTime.Now);
 			running = new Vector3(0, 0, Input.GetAxis("Vertical"));
 			running = transform.TransformDirection(running); // Transform Direction transforma as coordenadas x,y e z em coordenadas em rela��o ao mundo
 			running *= runSpeed;
 			control.Move(running * Time.deltaTime);
 			animator.speed = 2;
+
 		}
 		else
 			isRunning = false;
