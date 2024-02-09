@@ -115,9 +115,21 @@ public class ControlTankWarrior : MonoBehaviour
 		{
 			print("is NOT GROUNDED! ||||||||||||||||||||||||||||||||||||| " + DateTime.Now);
 
-			//animator.SetBool("parado", true);
-			animator.SetBool("andando", false);
-			animator.SetBool("atacando", false);
+
+
+			if (Input.GetButtonDown("Fire1")) // Ataque
+			{
+				print("atacando");
+				animator.SetBool("atacando", true);
+				animator.SetBool("parado", false);
+			}
+			else
+			{
+				animator.SetBool("parado", true);
+
+				animator.SetBool("andando", false);
+				animator.SetBool("atacando", false);
+			}
 
 		}
 
