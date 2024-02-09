@@ -55,7 +55,7 @@ public class ControlTankWarrior : MonoBehaviour
 			walking.y = Mathf.Sqrt(jumpForce * gravity);
 			
 
-			control.Move(walking * Time.deltaTime);
+			control.Move(walking * Time.deltaTime);	
 		}
 
 
@@ -115,7 +115,7 @@ public class ControlTankWarrior : MonoBehaviour
 		{
 			print("is NOT GROUNDED! ||||||||||||||||||||||||||||||||||||| " + DateTime.Now);
 
-			animator.SetBool("parado", true);
+			//animator.SetBool("parado", true);
 			animator.SetBool("andando", false);
 			animator.SetBool("atacando", false);
 
