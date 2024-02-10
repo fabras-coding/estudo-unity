@@ -1480,7 +1480,6 @@ GameObject:
   m_Component:
   - component: {fileID: 818777977}
   - component: {fileID: 818777976}
-  - component: {fileID: 818777975}
   - component: {fileID: 818777978}
   m_Layer: 0
   m_Name: Area Pirata
@@ -1489,19 +1488,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &818777975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818777974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e73ddc9a0eeeb1e439e52b241d12333e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animatorPorta: {fileID: 307897465}
 --- !u!65 &818777976
 BoxCollider:
   m_ObjectHideFlags: 0
