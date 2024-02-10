@@ -88,12 +88,12 @@ public class ControlTankWarrior : MonoBehaviour
 			}
 			else if (Input.GetAxis("Vertical") == 0) //esta no chao e parado
 			{
-				print("is grounded AND IDLE!  |||||||||||||||| " + DateTime.Now + "IDLE because Input is: " + Input.GetAxis("Vertical"));
+				//print("is grounded AND IDLE!  |||||||||||||||| " + DateTime.Now + "IDLE because Input is: " + Input.GetAxis("Vertical"));
 
 
 				if (Input.GetButtonDown("Fire1")) // Ataque
 				{
-					print("atacando");
+					//print("atacando");
 					animator.SetBool("atacando", true);
 
 				}
@@ -113,13 +113,13 @@ public class ControlTankWarrior : MonoBehaviour
 
 		if (!control.isGrounded)  // esta no Ar
 		{
-			print("is NOT GROUNDED! ||||||||||||||||||||||||||||||||||||| " + DateTime.Now);
+			//print("is NOT GROUNDED! ||||||||||||||||||||||||||||||||||||| " + DateTime.Now);
 
 
 
 			if (Input.GetButtonDown("Fire1")) // Ataque
 			{
-				print("atacando");
+				//print("atacando");
 				animator.SetBool("atacando", true);
 				animator.SetBool("parado", false);
 			}

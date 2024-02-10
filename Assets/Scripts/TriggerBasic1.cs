@@ -10,7 +10,7 @@ public class TriggerBasic1 : MonoBehaviour
 
 		if (collider.gameObject.CompareTag("Personagem"))
 		{
-			print("Você está na área 1.");
+			print("Você está na área Pirata!");
 		}
 
 	}
@@ -20,7 +20,7 @@ public class TriggerBasic1 : MonoBehaviour
 
 		if (collider.gameObject.CompareTag("Personagem"))
 		{
-			print("Você saiu da área 1.");
+			print("Você saiu da área Pirata!");
 		}
 	}
 }
