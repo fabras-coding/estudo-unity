@@ -47,7 +47,7 @@ public class ControlTankWarrior : MonoBehaviour
 		{
 
 			isJumping = true;
-			animator.SetBool("pulando", true);
+			
 			
 			if (isRunning)
 				walking.z *= runSpeed;
@@ -122,11 +122,18 @@ public class ControlTankWarrior : MonoBehaviour
 				//print("atacando");
 				animator.SetBool("atacando", true);
 				animator.SetBool("parado", false);
+				animator.SetBool("andando", false);
+
+			}
+			else if (Input.GetButtonDown("Fire1") && animator.GetBool("parado"))
+			{
+				animator.SetBool("atacando", true);
+				animator.SetBool("parado", false);
+				animator.SetBool("andando", false);
 			}
 			else
 			{
 				animator.SetBool("parado", true);
-
 				animator.SetBool("andando", false);
 				animator.SetBool("atacando", false);
 			}
@@ -164,10 +171,6 @@ public class ControlTankWarrior : MonoBehaviour
 			animator.SetBool("atacando", false);
 		}
 
-		if (animationState.Equals("Jump"))
-		{
-			animator.SetBool("pulando", false);
-		}
 
 	}
 
