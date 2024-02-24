@@ -6,6 +6,8 @@ using UnityEngine;
 public class ControlTankWarrior : MonoBehaviour
 {
 
+	
+
 	public float runSpeed = 6.5f;
 	public float jumpForce = 3.0f;
 	public float walkSpeed = 1.5f;

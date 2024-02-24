@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerBasic1 : MonoBehaviour
+public class FlagAreaTrigger : MonoBehaviour
 {
 	// Start is called before the first frame update
 	private void OnTriggerEnter(Collider collider)
@@ -10,7 +10,7 @@ public class TriggerBasic1 : MonoBehaviour
 
 		if (collider.gameObject.CompareTag("Personagem"))
 		{
-			print("Você está na área Pirata!");
+			print("Alguém está na área da Bandeira!");
 		}
 
 	}
@@ -20,7 +20,7 @@ public class TriggerBasic1 : MonoBehaviour
 
 		if (collider.gameObject.CompareTag("Personagem"))
 		{
-			print("Você saiu da área Pirata!");
+			print("Alguém saiu da área da bandeira!");
 		}
 	}
 }
