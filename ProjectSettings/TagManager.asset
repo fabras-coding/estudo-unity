@@ -9,6 +9,7 @@ TagManager:
   - Personagem
   - Area
   - Caixote
+  - Flag
   layers:
   - Default
   - TransparentFX

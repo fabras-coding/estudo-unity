@@ -15,7 +15,6 @@ public class MastTrigger : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        print("STARTOU O SCRIP");
     }
 
     // Update is called once per frame

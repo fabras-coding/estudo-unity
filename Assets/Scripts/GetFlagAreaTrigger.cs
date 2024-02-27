@@ -116,4 +116,14 @@ public class GetFlagAreaTrigger : MonoBehaviour
 			canTakeFlag = false;
 
 	}
+
+	//public static void ResetFlag()
+	//{
+	//	flag.transform.SetParent(null, true);
+	//	print("**********Você soltou a bandeira**************");
+	//	audioSource.PlayOneShot(dropFlagAudioClip);
+	//	isFlagCarrying = false;
+	//	canTakeFlag = true;
+	//	timeToGetFlag = 3;
+	//}
 }
