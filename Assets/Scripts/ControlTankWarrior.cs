@@ -3,174 +3,126 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController), typeof(Animator))]
 public class ControlTankWarrior : MonoBehaviour
 {
 
 	//TODO: Refactor
+	[Header("Movimentação")]
+	[SerializeField] private float walkSpeed = 1.5f;
+	[SerializeField] private float runSpeed = 6.5f;
+	[SerializeField] private float jumpForce = 3.0f;
+	[SerializeField] private float gravity = 20.0f;
+	[SerializeField] private float rotationSpeed = 60.0f;
 
-	public float runSpeed = 6.5f;
-	public float jumpForce = 3.0f;
-	public float walkSpeed = 1.5f;
-	public float rotationSpeed = 60.0f;
-	public float gravity = 20;
 
-	public Vector3 walking = Vector3.zero;
-	public Vector3 running = Vector3.zero;
-	public Vector3 jumping = Vector3.zero;
+	public CharacterController _playerController;
+	public Animator _animator;
+	private Vector3 _moveDirection;
+	private bool _isRunning;
 
-	public CharacterController control = null;
-	public Animator animator = null;
+	private enum State { Idle, Walk, Run, Jump, Attack }
+	private State _state = State.Idle;
 
-	public bool isJumping = false;
-	public bool isRunning = false;
-	public bool isAttacking = false;
+
+	private void Awake()
+	{
+		_animator = GetComponent<Animator>();
+		_playerController = GetComponent<CharacterController>();
+	}
 
 	//Update is called once per frame
 	void Update()
 	{
 
+		ProcessInput();
+		ApplyMovement();
+		UpdateAnimation();
 
-		animator.speed = 1;
+	}
 
-		//Moving foward/back
-		if (control.isGrounded)
+	private void ProcessInput()
+	{
+		float vertical = Input.GetAxis("Vertical");
+		float horizontal = Input.GetAxis("Horizontal");
+		bool jumpPressed = Input.GetButtonDown("Jump");
+		bool attackPressed = Input.GetButtonDown("Fire1");
+
+		// Rotation
+		transform.Rotate(0f, horizontal * rotationSpeed * Time.deltaTime, 0f);
+
+		//Check if is running
+		_isRunning = _playerController.isGrounded && Input.GetKey(KeyCode.LeftShift) && vertical > 0f;
+
+		//On ground movement
+		if (_playerController.isGrounded)
 		{
-			walking = new Vector3(0, 0, Input.GetAxis("Vertical"));
-			walking = transform.TransformDirection(walking); // Transform Direction transforma as coordenadas x,y e z em coordenadas em rela��o ao mundo
-			walking *= walkSpeed;
+			float speed = _isRunning ? runSpeed : walkSpeed;
+			_moveDirection = transform.forward * vertical * speed;
+
+			if (jumpPressed)
+			{
+				_moveDirection.y = Mathf.Sqrt(jumpForce * gravity);
+				_state = State.Jump;
+				return;
+			}
 		}
 
-				
-		walking.y -= gravity * Time.deltaTime;
-		control.Move(walking * Time.deltaTime);
+		//Gravity
+		_moveDirection.y -= gravity * Time.deltaTime;
 
-		//Jump 
-		if (control.isGrounded && Input.GetButtonDown("Jump"))
+		//Movement State
+		if (_state != State.Jump && _state != State.Attack)
 		{
-
-			isJumping = true;
-			
-			
-			if (isRunning)
-				walking.z *= runSpeed;
-			
-			walking.y = Mathf.Sqrt(jumpForce * gravity);
-			
-
-			control.Move(walking * Time.deltaTime);	
+			if (_isRunning) _state = State.Run;
+			else if (vertical != 0f) _state = State.Walk;
+			else _state = State.Idle;
 		}
 
-
-
-		//Rotate Char
-		float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
-		rotation *= Time.deltaTime;
-		transform.Rotate(0, rotation, 0);
-
-
-
-		//Animation 
-		if (control.isGrounded)
-		{
-
-
-			if (Input.GetAxis("Vertical") != 0)//esta no chao e andando
-			{
-				
-				animator.SetBool("parado", false);
-				animator.SetBool("andando", true);
-
-				if (Input.GetButtonDown("Fire1") && !isRunning ) //Atacando
-				{
-					animator.SetBool("atacando", true);
-
-				}
-
-
-			}
-			else if (Input.GetAxis("Vertical") == 0) //esta no chao e parado
-			{
-				//print("is grounded AND IDLE!  |||||||||||||||| " + DateTime.Now + "IDLE because Input is: " + Input.GetAxis("Vertical"));
-
-
-				if (Input.GetButtonDown("Fire1")) // Ataque
-				{
-					//print("atacando");
-					animator.SetBool("atacando", true);
-
-				}
-				else
-				{
-					animator.SetBool("parado", true);
-					animator.SetBool("atacando", false);
-					animator.SetBool("andando", false);
-				}
-
-
-
-			}
-
-
-		}
-
-		if (!control.isGrounded)  // esta no Ar
-		{
-			//print("is NOT GROUNDED! ||||||||||||||||||||||||||||||||||||| " + DateTime.Now);
-
-
-
-			if (Input.GetButtonDown("Fire1")) // Ataque
-			{
-				//print("atacando");
-				animator.SetBool("atacando", true);
-				animator.SetBool("parado", false);
-				animator.SetBool("andando", false);
-
-			}
-			else if (Input.GetButtonDown("Fire1") && animator.GetBool("parado"))
-			{
-				animator.SetBool("atacando", true);
-				animator.SetBool("parado", false);
-				animator.SetBool("andando", false);
-			}
-			else
-			{
-				animator.SetBool("parado", true);
-				animator.SetBool("andando", false);
-				animator.SetBool("atacando", false);
-			}
-
-		}
-
-
-		//Run
-		if (control.isGrounded && Input.GetKey(KeyCode.LeftShift))
-		{
-			isRunning = true;
-
-			running = new Vector3(0, 0, Input.GetAxis("Vertical"));
-			running = transform.TransformDirection(running); // Transform Direction transforma as coordenadas x,y e z em coordenadas em rela��o ao mundo
-			running *= runSpeed;
-			control.Move(running * Time.deltaTime);
-			animator.speed = 2;
-
-		}
-		else
-			isRunning = false;
-
-
-
-		
+		//Attack
+		if (attackPressed)
+			_state = State.Attack;
 
 
 	}
+
+	private void ApplyMovement()
+	{
+		_playerController.Move(_moveDirection * Time.deltaTime);
+	}
+
+	private void UpdateAnimation()
+	{
+		_animator.speed = _isRunning ? 2f : 1f;
+		_animator.SetBool("andando", _state == State.Walk);
+		_animator.SetBool("parado", _state == State.Idle);
+		_animator.SetBool("atacando", _state == State.Attack);
+
+	}
+
+	public void OnAttackEnd()
+	{
+        if (_state == State.Attack)
+        {
+            _state = State.Idle;
+        }
+    }
+
+	public void OnWalkEnd()
+	{
+		if (_state == State.Walk)
+		{
+			_state = State.Idle;
+		}
+	}
+
 
 	public void animationHasEndend(string animationState)
 	{
 
 		if (animationState.Equals("Attack"))
 		{
-			animator.SetBool("atacando", false);
+			_animator.SetBool("atacando", false);
 		}
 
 

@@ -254,7 +254,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155561308}
-  m_LocalRotation: {x: 0.08465009, y: -0.03040757, z: 0.00946457, w: 0.9959017}
+  m_LocalRotation: {x: 0.0846112, y: -0.04197023, z: 0.013063528, w: 0.99544406}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1357,7 +1357,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648308872}
-  m_LocalRotation: {x: 0.10761555, y: -0.007905504, z: 0.0026618543, w: 0.9941576}
+  m_LocalRotation: {x: 0.10761917, y: 0.0014307657, z: -0.00048175151, w: 0.9941911}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1853,7 +1853,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.19200659, y: -0.0256754, z: 0.005025097, w: 0.9810448}
+  m_LocalRotation: {x: 0.19193158, y: -0.037562106, z: 0.007351521, w: 0.9806617}
   m_LocalPosition: {x: -26.41384, y: 3, z: -50.43956}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4161,7 +4161,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499294693}
-  m_LocalRotation: {x: 0.07385097, y: -0.02352278, z: 0.0070425076, w: 0.996967}
+  m_LocalRotation: {x: 0.07384028, y: -0.028606186, z: 0.008564435, w: 0.99682295}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4667,16 +4667,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 416225f47cd20204098c1e2eeab986f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 1.5
   runSpeed: 3
   jumpForce: 3
-  walkSpeed: 1.5
-  rotationSpeed: 181.9
   gravity: 20
+  rotationSpeed: 181.9
+  _playerController: {fileID: 1992015484}
+  _animator: {fileID: 1992015479}
   walking: {x: 0, y: 0, z: 0}
   running: {x: 0, y: 0, z: 0}
   jumping: {x: 0, y: 0, z: 0}
-  control: {fileID: 1992015484}
-  animator: {fileID: 1992015479}
   isJumping: 0
   isRunning: 0
   isAttacking: 0
