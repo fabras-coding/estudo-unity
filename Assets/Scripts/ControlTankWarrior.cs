@@ -20,6 +20,7 @@ public class ControlTankWarrior : MonoBehaviour
 	public Animator _animator;
 	private Vector3 _moveDirection;
 	private bool _isRunning;
+	private bool _isWalking;
 
 	private enum State { Idle, Walk, Run, Jump, Attack }
 	private State _state = State.Idle;
@@ -53,6 +54,11 @@ public class ControlTankWarrior : MonoBehaviour
 
 		//Check if is running
 		_isRunning = _playerController.isGrounded && Input.GetKey(KeyCode.LeftShift) && vertical > 0f;
+
+		//Check if is walking
+		_isWalking = _playerController.isGrounded && vertical > 0f && !_isRunning;
+
+
 
 		//On ground movement
 		if (_playerController.isGrounded)
@@ -97,16 +103,24 @@ public class ControlTankWarrior : MonoBehaviour
 		_animator.SetBool("andando", _state == State.Walk);
 		_animator.SetBool("parado", _state == State.Idle);
 		_animator.SetBool("atacando", _state == State.Attack);
+		_animator.SetBool("correndo", _state == State.Run);
 
 	}
 
 	public void OnAttackEnd()
 	{
-        if (_state == State.Attack)
-        {
-            _state = State.Idle;
-        }
-    }
+
+		if (_state == State.Attack && !_isRunning && !_isWalking)
+			_state = State.Idle;
+		if (_state == State.Attack && _isRunning)
+			_state = State.Run;
+		if(_state == State.Attack && _isWalking && !_isRunning)
+			_state = State.Walk;
+
+
+	}
+
+	
 
 	public void OnWalkEnd()
 	{
