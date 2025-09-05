@@ -32,7 +32,7 @@ Just extract the files to any folder and then run the .exe file!
 3. Commit your changes (git commit -am ‘Add some fooBar’)
 4. Push to the branch (git push origin feature/fooBar)
 5. Create a new Pull Request
-   
+
 
 ## :bell: Roadmap
 
@@ -40,7 +40,7 @@ Just extract the files to any folder and then run the .exe file!
 - [x] Controle do personagem / Character Control
 - [X] Animações / Animations
 - [x] Física Básica / Basic Physics
-- [ ] Mecânica de pegar a bandeira / Capture the flag mecanics 
+- [X] Mecânica de pegar a bandeira / Capture the flag mecanics 
 - [ ] Inimigos / Enemies
 - [ ] Causar dano, sofrer dano / Deal damage
 - [ ] Barra de Vida / Health bar
@@ -48,7 +48,15 @@ Just extract the files to any folder and then run the .exe file!
 - [ ] Pontuação / Score
 - [ ] Soundtrack and Ambience
 - [ ] Multiplayer
-      
+
+
+
+## :beetle: Bugs
+
+- [ ] After the attack, if the char starts running, it will be set idle animation
+- [ ] While running, the attack animation gets faster
+- [ ] Sometimes, after taking the flag, it takes a lot of time to drop.  
+- [ ] Sometimes, after dropping the flag, it takes a lot of time to retake it.
 
 
 ## :smiley_cat: Authors
