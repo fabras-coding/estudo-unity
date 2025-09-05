@@ -40,21 +40,25 @@ Just extract the files to any folder and then run the .exe file!
 - [x] Controle do personagem / Character Control
 - [X] Animações / Animations
 - [x] Física Básica / Basic Physics
-- [X] Mecânica de pegar a bandeira / Capture the flag mecanics 
+- [X] Mecânica de pegar a bandeira / Capture the flag mecanics
+- [ ] Range visual da bandeira / Visual feedback for get flag range
+- [ ] Range visual do ataque / Visual feedback for basic attack range
 - [ ] Inimigos / Enemies
-- [ ] Causar dano, sofrer dano / Deal damage
 - [ ] Barra de Vida / Health bar
 - [ ] Barra de Energia / Energy Bar
+- [ ] Causar dano, sofrer dano / Deal damage
 - [ ] Pontuação / Score
 - [ ] Soundtrack and Ambience
+- [ ] Refatoração para ter uma classe base do personagem / Refactoring for base class of controller 
 - [ ] Multiplayer
+
 
 
 
 ## :beetle: Bugs
 
-- [ ] After the attack, if the char starts running, it will be set idle animation
-- [ ] While running, the attack animation gets faster
+- [X] After the attack, if the char starts running, it will be set idle animation
+- [ ] While running, the attack animation gets faster - *will be fix later*
 - [ ] Sometimes, after taking the flag, it takes a lot of time to drop.  
 - [ ] Sometimes, after dropping the flag, it takes a lot of time to retake it.
 
