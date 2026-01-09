@@ -7,7 +7,7 @@ using UnityEngine;
 public class ControlTankWarrior : MonoBehaviour
 {
 
-	//TODO: Refactor
+	
 	[Header("Movimentação")]
 	[SerializeField] private float walkSpeed = 1.5f;
 	[SerializeField] private float runSpeed = 6.5f;
