@@ -27,7 +27,7 @@ public class DeliveryFlagArea : MonoBehaviour
 			print("Você está na área de entrega da bandeira.");
 
 			//There's a flag attached to char
-			var flag = GetAllChildren(collision.gameObject).First(x => x.tag == "Flag");
+			var flag = GetAllChildren(collision.gameObject).First(x => x.tag == "Flag") ?? null;
 			if (flag != null)
 			{
 
@@ -37,7 +37,7 @@ public class DeliveryFlagArea : MonoBehaviour
 				print("A BANDEIRA VOLTOU AO LOCAL INICIAL.");
 
 				flag.transform.SetParent(null, true);
-				flag.transform.position = new Vector3(-33.017f, 0.9f, -38.792f); //TODO: ARRUMAR ESSA GAMBIARRA (RECEBER DA OUTRA CLASSE)
+				flag.transform.position = GameObject.FindWithTag("StartFlagArea").transform.position;
 				audioSource.PlayOneShot(dropFlagAudioClip);
 			}
 

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Mobs.JungleMobs
 {
-	public class MobAI : MonoBehaviour
+	public class ZombieAI : MonoBehaviour
 	{
 
 		public Transform player;
@@ -58,10 +58,6 @@ namespace Assets.Scripts.Mobs.JungleMobs
 				Console.WriteLine("A DISTANCIA É: " + distance);
 				_isWalking = false;
 				_isRunning = true; 
-				//animator.SetBool("walking", false);
-				//animator.SetBool("running", true);
-				//animator.SetBool("idle", false);
-				//animator.SetBool("attacking", false);
 
 				_state = State.Run;
 
@@ -123,7 +119,7 @@ namespace Assets.Scripts.Mobs.JungleMobs
 				wanderTime -= Time.deltaTime;
 
 				// anda pra frente
-				transform.position += transform.forward * speedRunning * Time.deltaTime;
+				transform.position += transform.forward * speedWalking * Time.deltaTime;
 
 				if (wanderTime <= 0f)
 					_state = State.Idle;

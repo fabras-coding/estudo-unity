@@ -11,6 +11,9 @@ TagManager:
   - Caixote
   - Flag
   - MobZombie
+  - WalkingFloor
+  - StartFlagArea
+  - AIMobPath
   layers:
   - Default
   - TransparentFX

@@ -3,7 +3,32 @@ guid: 5a15a7f61587764439029d740bf6268b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buffalo_mat
+    second: {fileID: 2100000, guid: d8fa0e1336c4d3c479d7c6335e324a1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: effect02
+    second: {fileID: 2100000, guid: 2498e43e10418544d8208820a6ba06e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: effect03
+    second: {fileID: 2100000, guid: 48991fcfa1c6bee4cbe6b8766b927424, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: effect04
+    second: {fileID: 2100000, guid: d93f1bd0699c6d64596cc3775db37c73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ground_mat
+    second: {fileID: 2100000, guid: 4338358dd181d884dbcf14862ece2a2e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
