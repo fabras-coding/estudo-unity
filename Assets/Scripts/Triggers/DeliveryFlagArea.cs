@@ -22,7 +22,7 @@ public class DeliveryFlagArea : MonoBehaviour
 
 	private void OnTriggerEnter(Collider collision)
 	{
-		if (collision.gameObject.CompareTag("Personagem"))
+		if (collision.gameObject.CompareTag("Player"))
 		{
 			print("Você está na área de entrega da bandeira.");
 
@@ -47,7 +47,7 @@ public class DeliveryFlagArea : MonoBehaviour
 
 	private void OnTriggerExit(Collider collision)
 	{
-		if (collision.gameObject.CompareTag("Personagem"))
+		if (collision.gameObject.CompareTag("Player"))
 		{
 
 		}

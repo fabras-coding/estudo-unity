@@ -25,7 +25,7 @@ public class MastTrigger : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if(collision.gameObject.CompareTag("Personagem"))
+		if(collision.gameObject.CompareTag("Player"))
         {
             print("Colidiu com a bandeira");
             audioSource.Play();

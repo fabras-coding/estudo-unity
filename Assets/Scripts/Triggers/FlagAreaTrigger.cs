@@ -8,7 +8,7 @@ public class FlagAreaTrigger : MonoBehaviour
 	private void OnTriggerEnter(Collider collider)
 	{
 
-		if (collider.gameObject.CompareTag("Personagem"))
+		if (collider.gameObject.CompareTag("Player"))
 		{
 			print("Alguém está na área da Bandeira!");
 		}
@@ -18,7 +18,7 @@ public class FlagAreaTrigger : MonoBehaviour
 	private void OnTriggerExit(Collider collider)
 	{
 
-		if (collider.gameObject.CompareTag("Personagem"))
+		if (collider.gameObject.CompareTag("Player"))
 		{
 			print("Alguém saiu da área da bandeira!");
 		}

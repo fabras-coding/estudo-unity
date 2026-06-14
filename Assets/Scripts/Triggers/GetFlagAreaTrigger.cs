@@ -55,7 +55,7 @@ public class GetFlagAreaTrigger : MonoBehaviour
 	{
 		if (canTakeFlag && timeToGetFlag <= 0)
 		{
-			if (Input.GetKeyDown(KeyCode.E) && collider.gameObject.CompareTag("Personagem"))
+			if (Input.GetKeyDown(KeyCode.E) && collider.gameObject.CompareTag("Player"))
 			{
 				print("=--=-=-=-==--=-=-=-=-=-=-=-=-=-=-=-=-==-=--==--=-=-= Você pegou a bandeira." + DateTime.Now);
 				audioSource.PlayOneShot(getFlagAudioClip);
@@ -69,7 +69,7 @@ public class GetFlagAreaTrigger : MonoBehaviour
 		}
 		else if (canTakeFlag && timeToGetFlag > 0)
 		{
-			if (Input.GetKeyDown(KeyCode.E) && collider.gameObject.CompareTag("Personagem"))
+			if (Input.GetKeyDown(KeyCode.E) && collider.gameObject.CompareTag("Player"))
 			{
 				audioSource.PlayOneShot(notYetGetAudioClip);
 
@@ -97,7 +97,7 @@ public class GetFlagAreaTrigger : MonoBehaviour
 
 	private void OnTriggerEnter(Collider collider)
 	{
-		if (collider.gameObject.CompareTag("Personagem"))
+		if (collider.gameObject.CompareTag("Player"))
 		{
 			canTakeFlag = true;
 			print("Pressione E para pegar a bandeira!");
@@ -112,7 +112,7 @@ public class GetFlagAreaTrigger : MonoBehaviour
 	private void OnTriggerExit(Collider collider)
 	{
 
-		if (collider.gameObject.CompareTag("Personagem"))
+		if (collider.gameObject.CompareTag("Player"))
 			canTakeFlag = false;
 
 	}
